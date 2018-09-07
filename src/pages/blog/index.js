@@ -3,8 +3,8 @@ import Link from 'gatsby-link'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
 
-import Bio from '../components/Bio'
-import { rhythm } from '../utils/typography'
+import Bio from '../../components/Bio'
+import { rhythm } from '../../utils/typography'
 
 class BlogIndex extends React.Component {
   render() {
@@ -47,7 +47,11 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMarkdownRemark(
+      # Only include files under /blog
+      filter: { fields: { slug: { regex: "^/blog/" } } }
+      sort: { fields: [frontmatter___date], order: DESC }
+    ) {
       edges {
         node {
           excerpt
