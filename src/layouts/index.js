@@ -12,9 +12,12 @@ class Template extends React.Component {
     if (typeof __PREFIX_PATHS__ !== `undefined` && __PREFIX_PATHS__) {
       rootPath = __PATH_PREFIX__ + `/`
     }
-    const blogPath = rootPath + 'blog/'
+    const blogPath = rootPath + 'blog'
 
-    if (location.pathname === blogPath) {
+    if (
+      location.pathname === blogPath ||
+      location.pathname === blogPath + '/'
+    ) {
       header = (
         <h1
           style={{
